@@ -1,4 +1,5 @@
 import 'package:firefightingsystem/screens/FirstScreen.dart';
+import 'package:firefightingsystem/screens/LoginScreen.dart';
 import 'package:firefightingsystem/screens/NoDangerScreen.dart';
 import 'package:firefightingsystem/screens/SensorAreaScreen.dart';
 import 'package:firefightingsystem/screens/SensorAreaScreen.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
               NoDangerScreen.routeName: (_) => NoDangerScreen(),
               SensorAreaScreen.routeName: (_) => SensorAreaScreen(),
               SideBarScreen.routeName: (_) => SideBarScreen(),
+              LoginScreen.routeName: (_) => LoginScreen(),
             }
         );
       },
