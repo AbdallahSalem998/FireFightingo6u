@@ -1,9 +1,11 @@
 import 'dart:async';
-import 'package:animations/animations.dart';
+import 'package:firefightingsystem/providers/my_provider.dart';
 import 'package:firefightingsystem/screens/FirstScreen.dart';
+import 'package:firefightingsystem/screens/LoginScreen.dart';
 import 'package:firefightingsystem/shared/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 
 class SplashScreen2Sub extends StatefulWidget {
@@ -24,8 +26,9 @@ class _SplashScreen2SubState extends State<SplashScreen2Sub> {
       });
     });
     Timer(Duration(milliseconds: 4000), () {
-      Navigator.of(context)
-          .pushReplacement(SlideTransitionAnimation(FirstScreen()));
+      var provider = Provider.of<MyProvider>(context,listen: false);
+      Navigator.of(context).pushReplacement(SlideTransitionAnimation(provider.firebaseUser==null?LoginScreen():FirstScreen()));
+      // Navigator.of(context).pushReplacement(SlideTransitionAnimation(FirstScreen()));
     });
   }
 

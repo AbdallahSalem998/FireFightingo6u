@@ -1,15 +1,20 @@
 class SensorModel {
-  // static const String COLLECTION_NAME = "Sensors";
+  static const String COLLECTION_NAME = "Sensors";
   String? smoke;
   String? gas;
   String? heat;
   String? flame;
-
+  bool? Door;
+  bool? Window;
+  bool? Electricity;
+  bool? Gas;
+  bool? Alarm;
   SensorModel({
-    required this.smoke,
-    required this.gas,
-    required this.heat,
-    required this.flame,
+    required this.Door,
+    required this.Window,
+    required this.Electricity,
+    required this.Gas,
+    required this.Alarm,
   });
 
   SensorModel.fromJson(Map<String, dynamic> json) {
@@ -21,10 +26,15 @@ class SensorModel {
 
   Map<String, dynamic> toJson() {
     return {
-      "smoke": smoke,
-      "gas": gas,
-      "heat": heat,
-      "flame": flame,
+      // "smoke": smoke,
+      // "gas": gas,
+      // "heat": heat,
+      // "flame": flame,
+      "Door": Door,
+      "Window": Window,
+      "Electricity": Electricity,
+      "Gas": Gas,
+      "Alarm": Alarm,
     };
   }
 }

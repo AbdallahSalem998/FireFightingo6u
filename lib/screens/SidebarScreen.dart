@@ -27,7 +27,7 @@ class _SideBarScreenState extends State<SideBarScreen> {
       );
     }
 
-    bool b1 = true;
+    bool door = true,window = true,electricity = true,gas = true,alarm = true;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -36,11 +36,11 @@ class _SideBarScreenState extends State<SideBarScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          sideBarRow(Icons.door_front_door, "Door", Switch(value: b1, onChanged: (bool value){setState(() {b1=value;});})),
-          sideBarRow(Icons.window, "Window", Switch(value: b1, onChanged: (bool value){setState(() {b1=value;});})),
-          sideBarRow(Icons.electric_bolt, "Electricity", Switch(value: b1, onChanged: (bool value){setState(() {b1=value;});})),
-          sideBarRow(Icons.cloud_done, "Gas", Switch(value: b1, onChanged: (bool value){setState(() {b1=value;});})),
-          sideBarRow(CupertinoIcons.bell_fill, "Fire Alarm", Switch(value: b1, onChanged: (bool value){setState(() {b1=value;});})),
+          sideBarRow(Icons.door_front_door, "Door", Switch(value: door, onChanged: (bool value){setState(() {door=value; });})),
+          sideBarRow(Icons.window, "Window", Switch(value: window, onChanged: (bool value){setState(() {window=value; });})),
+          sideBarRow(Icons.electric_bolt, "Electricity", Switch(value: electricity, onChanged: (bool value){setState(() {electricity=value; });})),
+          sideBarRow(Icons.cloud_done, "Gas", Switch(value: gas, onChanged: (bool value){setState(() {gas=value; });})),
+          sideBarRow(CupertinoIcons.bell_fill, "Fire Alarm", Switch(value: alarm, onChanged: (bool value){setState(() {alarm=value; });})),
           // ,Row(
           //   children: [
           //     Icon(Icons.door_front_door),
@@ -61,3 +61,9 @@ class _SideBarScreenState extends State<SideBarScreen> {
   }
 }
 
+// DatabaseReference ref = FirebaseDatabase.instance.ref("users/123");
+//
+// // Only update the name, leave the age and address!
+// await ref.update({
+// "age": 19,
+// });

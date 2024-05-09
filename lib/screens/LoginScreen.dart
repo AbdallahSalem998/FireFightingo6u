@@ -20,7 +20,8 @@ class LoginScreen extends StatelessWidget {
       body: Form(
         key: formKey,
         child: Column(
-          children: [
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [SizedBox(height: 50.h,),
             // Column(
             //   crossAxisAlignment: CrossAxisAlignment.stretch,
             //   children: [
@@ -65,8 +66,9 @@ class LoginScreen extends StatelessWidget {
                     ?.copyWith(color: BlackColor),
               ),
             ),
-            Expanded(
-
+            SizedBox(height: 120.h,),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
               child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -94,10 +96,10 @@ class LoginScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12.r),
                       borderSide:
                       BorderSide(color: darkBlueColor))),
-            ),
+              ),
                SizedBox(
               height: 20.h,
-            ),
+              ),
                TextFormField(
               obscureText: true,
               controller: passwordController,
@@ -119,12 +121,14 @@ class LoginScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12.r),
                       borderSide:
                       BorderSide(color: darkBlueColor))),
-            ),
+              ),
                SizedBox(
               height: 20.h,
-            ),
+              ),
                ElevatedButton(
               onPressed: () {
+                // Navigator.pushReplacementNamed(
+                //     context, FirstScreen.routeName);
                 if (formKey.currentState!.validate()) {
                   FirebaseFunctions.userLogin(
                       usernameController.text,
@@ -147,9 +151,9 @@ class LoginScreen extends StatelessWidget {
                     );
                   }, (usermodel)
                   {
-                        Duration(milliseconds: 3000);
+                        // Duration(milliseconds: 3000);
                     provider.initUser();
-                        Duration(milliseconds: 3000);
+                        // Duration(milliseconds: 3000);
                     Navigator.pushReplacementNamed(
                         context, FirstScreen.routeName,
                         arguments: usermodel);
@@ -157,10 +161,10 @@ class LoginScreen extends StatelessWidget {
                 }
               },
               child: Text("Login"),
-            ),
+              ),
           ],
         ),
-      ),
+            ),
 
 
       // Column(
