@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +12,9 @@ class SideBarScreen extends StatefulWidget {
 }
 
 class _SideBarScreenState extends State<SideBarScreen> {
+
+  DatabaseReference ref = FirebaseDatabase.instance.ref("action");
+
   @override
   Widget build(BuildContext context) {
     Widget sideBarRow(IconData con, String text,Widget wid) {
@@ -36,11 +40,13 @@ class _SideBarScreenState extends State<SideBarScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          sideBarRow(Icons.door_front_door, "Door", Switch(value: door, onChanged: (bool value){setState(() {door=value; });})),
+          sideBarRow(Icons.door_front_door, "Door", Switch(value: door, onChanged: (bool value){setState(() async {door=value; await ref.update({"door": door,}); });})),
           sideBarRow(Icons.window, "Window", Switch(value: window, onChanged: (bool value){setState(() {window=value; });})),
           sideBarRow(Icons.electric_bolt, "Electricity", Switch(value: electricity, onChanged: (bool value){setState(() {electricity=value; });})),
           sideBarRow(Icons.cloud_done, "Gas", Switch(value: gas, onChanged: (bool value){setState(() {gas=value; });})),
           sideBarRow(CupertinoIcons.bell_fill, "Fire Alarm", Switch(value: alarm, onChanged: (bool value){setState(() {alarm=value; });})),
+          ElevatedButton(onPressed: () async {door= !door; await ref.update({"door": door,});}, child: Text("door")),
+          ElevatedButton(onPressed: () async {gas= !gas; await ref.update({"gas": gas,});}, child: Text("gas")),
           // ,Row(
           //   children: [
           //     Icon(Icons.door_front_door),
