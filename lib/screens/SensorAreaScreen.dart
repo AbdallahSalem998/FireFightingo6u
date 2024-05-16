@@ -267,10 +267,10 @@ class _SensorAreaScreenState extends State<SensorAreaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    mq135Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;heat=data.toString();setState(() {});});
+    mq135Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;smoke=data.toString();setState(() {});});
     flameRef.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;flame=data.toString();setState(() {});});
-    mq5Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;smoke=data.toString();setState(() {});});
-    ds18b20Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;gas=data.toString();setState(() {});});
+    mq5Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;gas=data.toString();setState(() {});});
+    ds18b20Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;heat=data.toString();setState(() {});});
     // Stream<DatabaseEvent> stream = starCountRef.onValue;
     // stream.listen((DatabaseEvent event) {
     //   print('Event Type: ${event.type}'); // DatabaseEventType.value;
@@ -356,9 +356,9 @@ class _SensorAreaScreenState extends State<SensorAreaScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Row(
                   children: [
-                    Icon(Icons.warning_amber,size: 30.sp,color: Color(0xFFECFF16),),
-                    SizedBox(width: 8.w,),
-                    Text(" Fire detected",style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16)),
+                    // Icon(Icons.warning_amber,size: 30.sp,color: Color(0xFFECFF16),),
+                    // SizedBox(width: 8.w,),
+                    Text(flame.toString(),style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w500),),
                     Spacer(),
                     Icon(Icons.local_fire_department,color: lightRedColor,size: 40.sp,)
                   ],
@@ -377,7 +377,7 @@ class _SensorAreaScreenState extends State<SensorAreaScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Row(children: [
-                  Text("No Gas detected",style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: yellowColor),),
+                  Text(gas.toString(),style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w500),),
                   Spacer(),
                   Icon(Icons.cloud_done,size: 40.sp,color: lightGreyColor,)
                 ],),
@@ -395,7 +395,7 @@ class _SensorAreaScreenState extends State<SensorAreaScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Row(children: [
-                  Text("No Smoke detected",style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: yellowColor),),
+                  Text(smoke.toString(),style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w500),),
                   Spacer(),
                   Icon(Icons.smoke_free,size: 40.sp,color: lightGreyColor,)
                 ],),

@@ -286,3 +286,33 @@
 //           }
 //           ),
 //     );
+
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+
+String? flame;
+String? heat;
+String? smoke;
+String? gas;
+
+DatabaseReference flameRef = FirebaseDatabase.instance.ref('sensor/irflame');
+DatabaseReference mq135Ref = FirebaseDatabase.instance.ref('sensor/mq135');
+DatabaseReference mq5Ref = FirebaseDatabase.instance.ref('sensor/mq5');
+DatabaseReference ds18b20Ref = FirebaseDatabase.instance.ref('sensor/ds18b20');
+
+class Functions extends StatelessWidget {
+  const Functions({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+  mq135Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;smoke=data.toString();});
+  flameRef.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;flame=data.toString();});
+  mq5Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;gas=data.toString();});
+  ds18b20Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;heat=data.toString();});
+
+
+  return const Placeholder();
+  }
+}
+
