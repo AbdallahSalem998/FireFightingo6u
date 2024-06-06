@@ -287,13 +287,34 @@
 //           ),
 //     );
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firefightingsystem/screens/FirstScreen.dart';
 import 'package:flutter/material.dart';
 
 String? flame;
 String? heat;
 String? smoke;
 String? gas;
+double Doubleflame=0;
+double Doubleheat=0;
+double Doublesmoke=0;
+double Doublegas=0;
+
+Future<AudioPlayer> playLocalAsset() async {
+  AudioCache cache = new AudioCache();
+  //At the next line, DO NOT pass the entire reference such as assets/yes.mp3. This will not work.
+  //Just pass the file name only.
+  //TODO change the path after i find a good alert sound and may make a for loop for it if it's short one
+  return await cache.play("mixkitelectricfencealert2969.wav");
+}
+void toDouble() {
+  Doubleflame=double.parse(flame.toString());
+  Doubleheat=double.parse(heat.toString());
+  Doublesmoke=double.parse(smoke.toString());
+  Doublegas=double.parse(gas.toString());
+}
+void alarmCheck(){}
 
 DatabaseReference flameRef = FirebaseDatabase.instance.ref('sensor/irflame');
 DatabaseReference mq135Ref = FirebaseDatabase.instance.ref('sensor/mq135');
@@ -305,11 +326,29 @@ class Functions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void alarmCheck(){
+      if(Doubleflame>=20){
+        playLocalAsset();
+        Navigator.pushReplacementNamed(context, FirstScreen.routeName);
+      }
+      if(Doubleheat>=20){
+        playLocalAsset();
+        Navigator.pushReplacementNamed(context, FirstScreen.routeName);
+      }
+      if(Doublesmoke>=20){
+        playLocalAsset();
+        Navigator.pushReplacementNamed(context, FirstScreen.routeName);
+      }
+      if(Doublegas>=20){
+        playLocalAsset();
+        Navigator.pushReplacementNamed(context, FirstScreen.routeName);
+      }
+    }
 
-  mq135Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;smoke=data.toString();});
-  flameRef.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;flame=data.toString();});
-  mq5Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;gas=data.toString();});
-  ds18b20Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;heat=data.toString();});
+    mq135Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;smoke=data.toString();toDouble();alarmCheck();});
+  flameRef.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;flame=data.toString();toDouble();alarmCheck();});
+  mq5Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;gas=data.toString();toDouble();alarmCheck();});
+  ds18b20Ref.onValue.listen((DatabaseEvent event) {final data = event.snapshot.value;heat=data.toString();toDouble();alarmCheck();});
 
 
   return const Placeholder();

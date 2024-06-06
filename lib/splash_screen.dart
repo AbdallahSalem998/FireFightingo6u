@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firefightingsystem/providers/my_provider.dart';
 import 'package:firefightingsystem/screens/FirstScreen.dart';
 import 'package:firefightingsystem/screens/LoginScreen.dart';
+import 'package:firefightingsystem/screens/NoDangerScreen.dart';
 import 'package:firefightingsystem/shared/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +28,7 @@ class _SplashScreen2SubState extends State<SplashScreen2Sub> {
     });
     Timer(Duration(milliseconds: 4000), () {
       var provider = Provider.of<MyProvider>(context,listen: false);
-      Navigator.of(context).pushReplacement(SlideTransitionAnimation(provider.firebaseUser==null?LoginScreen():FirstScreen()));
+      Navigator.of(context).pushReplacement(SlideTransitionAnimation(provider.firebaseUser==null?LoginScreen():NoDangerScreen()));
       // Navigator.of(context).pushReplacement(SlideTransitionAnimation(FirstScreen()));
     });
   }

@@ -1,6 +1,7 @@
 import 'package:firefightingsystem/firebase_functions.dart';
 import 'package:firefightingsystem/providers/my_provider.dart';
 import 'package:firefightingsystem/screens/FirstScreen.dart';
+import 'package:firefightingsystem/screens/NoDangerScreen.dart';
 import 'package:firefightingsystem/shared/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -155,7 +156,7 @@ class LoginScreen extends StatelessWidget {
                     provider.initUser();
                         // Duration(milliseconds: 3000);
                     Navigator.pushReplacementNamed(
-                        context, FirstScreen.routeName,
+                        context, NoDangerScreen.routeName,
                         arguments: usermodel);
                   });
                 }
