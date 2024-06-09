@@ -1,10 +1,13 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firefightingsystem/providers/my_provider.dart';
+import 'package:firefightingsystem/screens/LoginScreen.dart';
 import 'package:firefightingsystem/screens/SensorAreaScreen.dart';
 import 'package:firefightingsystem/shared/styles/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 String? flame;
 String? heat;
@@ -68,6 +71,7 @@ String AlertText = "$dangerText$TextFlame$TextSmoke$TextGas$TextHeat";
 class _NoDangerScreenState extends State<NoDangerScreen> {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
 
     // void alarmCheck() {
     //   if(Doubleflame>=20){
@@ -279,6 +283,17 @@ class _NoDangerScreenState extends State<NoDangerScreen> {
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(
+            onPressed: () {
+              provider.signOut();
+              Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+            },
+            icon: Icon(
+              Icons.logout,
+              color: Colors.white,
+            )),
+        ],
       ),
       // appBar: AppBar(
       //   actions: [IconButton(onPressed: (){
